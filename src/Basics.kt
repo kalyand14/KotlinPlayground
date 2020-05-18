@@ -14,6 +14,8 @@ fun main() {
     nullvsNotNull()
     listandMutableList()
     arraysAreNonMutable()
+    forLoops()
+    whileLoops()
 }
 
 fun stringExpressions() {
@@ -143,7 +145,7 @@ fun whenExpression() {
 
 fun whenconditions() {
     println("==== whenconditions ===")
-    val source: Int = 100
+    val source: Any = 100
     val result = when (source) {
         0 -> "This is equal to zero"
         in 1..100 -> "This is in range 1..100"
@@ -169,7 +171,7 @@ fun nullvsNotNull() {
     println("The value of nullable is ${nullable?.dec() ?: 0}")
     nullable = 100
     println("The value of nullable is $nullable")
-    println("The value of nullable is ${nullable?.dec()}")
+    println("The value of nullable is ${nullable.dec()}")
 }
 
 fun listandMutableList() {
@@ -197,4 +199,59 @@ fun arraysAreNonMutable() {
     // unComment me - to see erorr
     // list.remove("A ")
     println("The items in the array are ${Arrays.toString(array)}")
+
+    val dynamicInitialization = Array(5) { it * 5 }
+    println("The items in the dynamicInitialization - array are ${Arrays.toString(dynamicInitialization)}")
+
+    // Combining 2 int array
+    val array1 = intArrayOf(1, 2, 3)
+    val array2 = intArrayOf(4, 5, 6)
+    val result = array1 + array2
+
+    println("The operator overloading for array initialization array1 + array2 is  ${Arrays.toString(result)}")
+
+
+}
+
+fun forLoops() {
+    val fishes = arrayOf("FishA", "FishB", "FishB", "FishC")
+    for (fish in fishes) {
+        println("The fishes are - $fish")
+    }
+
+    for ((index, fish) in fishes.withIndex()) {
+        println("$index - The fishes are - $fish")
+    }
+
+    for (index in 1..10) {
+        println("The numbers in range are - $index")
+    }
+
+    for (index in 1..10 step 2) {
+        println("The numbers in range by step are - $index")
+    }
+
+    for (index in 10 downTo 1 step 2) {
+        println("The numbers 1 downto 10 are - $index")
+    }
+
+    for (index in 'a'..'g') {
+        println("The characters between a..g are - $index")
+    }
+}
+
+fun whileLoops() {
+    var index = 5
+    while (index++ in 1..10) {
+
+        println("while loop - The numbers are - $index")
+    }
+
+    do {
+        println("do while loop - The numbers are - $index")
+    } while (index++ in 1..15)
+
+    repeat(5){
+        println("Repeating the statements - $it")
+    }
 }
