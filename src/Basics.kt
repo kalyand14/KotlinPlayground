@@ -1,4 +1,5 @@
 import java.util.*
+import kotlin.collections.ArrayList
 
 fun main() {
     numericOperators()
@@ -211,6 +212,22 @@ fun arraysAreNonMutable() {
     println("The operator overloading for array initialization array1 + array2 is  ${Arrays.toString(result)}")
 
 
+}
+
+operator fun String.div(filter:String) :String{
+    val source = this.toCharArray()
+    var result: ArrayList<Char> = ArrayList()
+    for(char in source){
+        if(char in filter.toCharArray())
+        {
+            result.add(char)
+        }
+    }
+
+    if(result.size > 0)
+        return  result.joinToString("").trim();
+    else
+        return ""
 }
 
 fun forLoops() {

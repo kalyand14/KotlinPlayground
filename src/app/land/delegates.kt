@@ -15,6 +15,9 @@ fun main() {
     })
     cattle.showWhatYouGot()
 
+    val homePageNavigator = HomePageNavigator()
+    Controller(homePageNavigator).navigate()
+
 }
 
 interface Animals {
@@ -95,5 +98,25 @@ class Cattle(walk: CanMove) : Animals, CanEat by Herbivorous, CanMove by walk, L
         println("Cattle move by ${move()}")
         println("Cattle ${eat()}")
     }
-
 }
+
+interface Navigator {
+    fun navigate()
+}
+
+class HomePageNavigator() : Navigator {
+    override fun navigate() {
+        println("Navigating to settings")
+    }
+}
+
+class Controller(navigator: Navigator) : Navigator by navigator
+
+val scope = CoroutineScope(Dispatchers.Main)
+
+fun login() = scope.launch {
+    view.showLoading()
+    withContext(Dispatcher.IO) { networkClient.login(...) }
+    view.hideLoading()
+}
+
